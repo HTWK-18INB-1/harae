@@ -5,7 +5,7 @@
 [attr]unityyaml -text merge=unityyamlmerge diff
 
 # Macro for all binary files that should use Git LFS.
-[attr]lfs -text filter=lfs diff=lfs merge=lfs
+[attr]lfs -text filter=lfs diff=lfs merge=lfs lockable
 
 # Default to auto-normalized line endings.
 * text=auto
@@ -42,9 +42,9 @@
 # Unity Binary Assets
 *.cubemap lfs
 *.unitypackage lfs
-# Note: Unity terrain assets must have "-Terrain" suffix.
+# Note: Unity terrain assets must have "Terrain" suffix.
 *Terrain.asset -unityyaml lfs
-# Note: Unity navmesh assets must have "-NavMesh" suffix.
+# Note: Unity navmesh assets must have "NavMesh" suffix.
 *NavMesh.asset -unityyaml lfs
 
 # Image
@@ -116,6 +116,10 @@
 *.bin lfs
 *.glb lfs
 
+# Fonts
+*.otf lfs
+*.ttf lfs
+
 # Executables
 *.exe lfs
 *.dll lfs
@@ -129,3 +133,11 @@
 *.gz lfs
 *.rar lfs
 *.tar lfs
+
+# Collapse Unity-generated files on GitHub
+# Source: https://thoughtbot.com/blog/how-to-git-with-unity
+*.asset linguist-generated
+*.mat linguist-generated
+*.meta linguist-generated
+*.prefab linguist-generated
+*.unity linguist-generated
