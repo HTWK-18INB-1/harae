@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class fire : MonoBehaviour
 {
-    public float damage = 10f;
-    public float range = 100f;
+    public float damage;
+    public float range ;
 
     public Camera fpsCamera;
 
@@ -35,7 +35,6 @@ public class fire : MonoBehaviour
     {
         RaycastHit hit;
         fireParticle.Play();
-        Debug.Log("passiert");
         if(Physics.Raycast(fpsCamera.transform.position,fpsCamera.transform.forward,out hit,range)){
             Target target = hit.transform.GetComponent<Target>();
             if(target != null) {

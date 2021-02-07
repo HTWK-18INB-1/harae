@@ -5,20 +5,26 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-
-    float timeCounter;
-    float speed;
-    float width;
-    float height;
     private MeshRenderer renderer;
-    float health = 100f;
+    public float health;
+    public bool boss;
+    public ParticleSystem deathAnimation;
 
 
     public void takeDamage(float amount){
         health -=amount;
 
          if(health <=0f){
-            Destroy(gameObject);
+             if(!boss){
+                //Particle System 
+                Destroy(gameObject);
+             }
+
+            else{
+                deathAnimation.Play();
+                Destroy(gameObject);
+            }
+            
         }
 
     }
@@ -28,30 +34,15 @@ public class Target : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeCounter =0;
-        speed =3;
-        width =4;
-        height =4;
-        renderer = gameObject.GetComponent<MeshRenderer>();
-        renderer.material.color = Color.blue;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-
-       
-     }
-
-    //Circulat Movement 
-    private void circularTransform(float time,float speed,float width,float height) 
-    {
-        timeCounter += Time.deltaTime * speed;
-        float xpos = Mathf.Cos(timeCounter)* width;
-        float ypos = Mathf.Sin(timeCounter)* height;
-        this.transform.position = new Vector3(xpos,ypos,0);
     }
+    
 
    
     
