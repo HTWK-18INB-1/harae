@@ -27,7 +27,16 @@ This is an simple virtual reality exorcism game.
 	* [18 High Resolution Wall Textures](https://assetstore.unity.com/packages/2d/textures-materials/brick/18-high-resolution-wall-textures-12567) (07.02.2021)
 	* [Terrain Textures Pack Free](https://assetstore.unity.com/packages/2d/textures-materials/terrain-textures-pack-free-139542) (07.02.2021)
 	* [Outdoor Ground Textures](https://assetstore.unity.com/packages/2d/textures-materials/floors/outdoor-ground-textures-12555) (07.02.2021)
+	* [Particle Ribbon](https://assetstore.unity.com/packages/vfx/particles/spells/particle-ribbon-42866)(07.02.2021)
+	* [Unity Particle Pack](https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325)(07.02.2021)	
 	
+ * [Charakter's and Animation](https://www.mixamo.com/):
+	* [Warrok W Kurniawan]
+	* [Yaku J Ignite]
+	* [Scary Zombie Pack]
+	* [Creature NPC Pack]
+
+
 ## License
 This project is free software under the terms of the CC BY 4.0 license.
 For more details please see the LICENSE file or: [Creative Commons](http://creativecommons.org/licenses/by/4.0)
