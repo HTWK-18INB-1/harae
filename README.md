@@ -20,6 +20,15 @@ This is an simple virtual reality exorcism game.
  git config mergetool.unityyamlmerge.cmd '"/path/to/UnityYAMLMerge" merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"'
  ```
 
+## Assets
+ * [Unity Assetstore](https://assetstore.unity.com/):
+   * [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) (10.02.2021)
+   * [Free Night Sky](https://assetstore.unity.com/packages/2d/textures-materials/sky/free-night-sky-79066) (06.02.2021)
+
+## Unity Packages
+ * [XR Plugin Management](https://docs.unity3d.com/Packages/com.unity.xr.management@3.2/manual/index.html) (10.02.2021)
+ * [Oculus XR Plugin](https://docs.unity3d.com/Packages/com.unity.xr.oculus@1.6/manual/index.html) (10.02.2021)
+
 ## License
 This project is free software under the terms of the CC BY 4.0 license.
 For more details please see the LICENSE file or: [Creative Commons](http://creativecommons.org/licenses/by/4.0)
