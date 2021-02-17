@@ -1,5 +1,6 @@
 # Harae
 [![Chat](https://discordapp.com/api/guilds/774798139982348309/widget.png?style=shield)](https://discord.gg/h4wJmKYkMZ)
+[![Project refactoring](https://img.shields.io/badge/Project-Refactoring-blue.svg)](https://github.com/HTWK-18INB-1/harae/issues)
 
 ## About
 This is an simple virtual reality exorcism game.
@@ -29,6 +30,15 @@ This is an simple virtual reality exorcism game.
 ## Unity Packages
  * [XR Plugin Management](https://docs.unity3d.com/Packages/com.unity.xr.management@3.2/manual/index.html) (10.02.2021)
  * [Oculus XR Plugin](https://docs.unity3d.com/Packages/com.unity.xr.oculus@1.6/manual/index.html) (10.02.2021)
+
+## Project status meanings
+ * **Refactoring:** Structural and technical changes have currently priority.
+ * **Active:** Default status.
+ * **Fixes only:** The project is maintained at the minimum level to apply at least fixes.
+ * **Takeover:** The project is currently being taked over by another team and will possibly move.
+ * **Not maintained:** The project is not maintained any more (ready to take over).
+
+*Feature requests are welcomed all the time, of course! ;-)*
 
 ## License
 This project is free software under the terms of the CC BY 4.0 license.
