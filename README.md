@@ -11,10 +11,11 @@ This is an simple virtual reality exorcism game.
  1. Install [Git](https://git-scm.com) and [Git LFS](https://git-lfs.github.com).
  2. Run `git lfs install`.
  3. Clone the repository.
- 4. Configure the repository properly by issuing the following Git commands (please use your own name, email and path instead):
+ 4. Configure the repository properly by issuing the following Git commands (please use your own name, email and UnityYAMLMerge path instead):
  ```bash
  git config user.name "Your Name"
  git config user.email "you@example.org"
+ git config credential.helper 'cache --timeout=3600'
  git config mergetool.unityyamlmerge.trustExitCode false
  git config mergetool.unityyamlmerge.keepBackup false
  git config mergetool.unityyamlmerge.cmd '"/path/to/UnityYAMLMerge" merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"'
