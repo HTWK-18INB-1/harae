@@ -22,7 +22,7 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # Time tracking system
-  create_task:
+  reopen_task:
     name: Reopening task at time tracking system
     runs-on: ubuntu-latest
     steps:
