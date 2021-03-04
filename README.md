@@ -29,6 +29,9 @@ This is an simple virtual reality exorcism game.
 	* [Outdoor Ground Textures](https://assetstore.unity.com/packages/2d/textures-materials/floors/outdoor-ground-textures-12555) (07.02.2021)
 	* [Particle Ribbon](https://assetstore.unity.com/packages/vfx/particles/spells/particle-ribbon-42866)(07.02.2021)
 	* [Unity Particle Pack](https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325)(07.02.2021)	
+	* [FREE Witchcraft and Wizardry Asset Pack](https://assetstore.unity.com/packages/3d/props/free-witchcraft-and-wizardry-asset-pack-141428)(01.03.2021)
+	* [Essential Horror Music Collection (v1) [FREE]](https://assetstore.unity.com/packages/audio/ambient/fantasy/essential-horror-music-collection-v1-free-187099)(01.03.2021)
+	
 	
  * [Charakter's and Animation](https://www.mixamo.com/):
 	* [Warrok W Kurniawan]
