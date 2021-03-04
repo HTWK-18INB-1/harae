@@ -322,9 +322,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ac724cc2852df57a30692b49fbd685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 446067678}
   finalBook: {fileID: 1109165446}
   targetOne: {fileID: 1888034606}
-  targetTwo: {fileID: 1792722848}
+  targetTwo: {fileID: 1888034606}
 --- !u!108 &200556575
 Light:
   m_ObjectHideFlags: 0
@@ -338,7 +339,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.2781594, g: 0.042719834, b: 0.2830189, a: 1}
   m_Intensity: 100
-  m_Range: 3
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -393,12 +394,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200556573}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.33, y: 1.17, z: -2.99}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 6.75, y: 3.38, z: -20.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 446067681}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!122 &200556577
 Halo:
@@ -5287,10 +5288,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446067678}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.0525742, y: 3.6, z: -0.53064597}
+  m_LocalPosition: {x: 21.04, y: 3.6, z: 8.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224435862}
+  - {fileID: 200556576}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -11569,11 +11571,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2477511411847689622, guid: 8a5ade4e9008f404a98982a1357f1f38, type: 3}
---- !u!1 &1792722848 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1269120730060968, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
-  m_PrefabInstance: {fileID: 124760363}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1886640719 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7271449666460269675, guid: 8a5ade4e9008f404a98982a1357f1f38, type: 3}
