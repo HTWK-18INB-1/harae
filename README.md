@@ -30,6 +30,8 @@ This is an simple virtual reality exorcism game.
 ## Unity Packages
  * [XR Plugin Management](https://docs.unity3d.com/Packages/com.unity.xr.management@3.2/manual/index.html) (10.02.2021)
  * [Oculus XR Plugin](https://docs.unity3d.com/Packages/com.unity.xr.oculus@1.6/manual/index.html) (10.02.2021)
+ * [VR Controller Unity Package](https://uc9917c7ab5321a72540b0a96c90.dl.dropboxusercontent.com/cd/0/get/BKbMVB9jka6c0M3u_SIJfnQNyNB5LjX5vX23k-hEMH_g3cNelRWZ4vX0NQwktR6xkUUan29Ltep5qq1fpbdOsOv9vGt3fCN5wgA1Qw6F_WGM5LPHJ2WSxTSGcyqcM6MUqx3ona12D1V9Yd9M5Mv3r5x0/file?dl=1#)
+ * [Oculus Hands Unity Package](https://uc596a07805e2999e64e3c2f02f4.dl.dropboxusercontent.com/cd/0/get/BKb9QUVKPba89H5G5_kL4Ralj852zBWyEC8EVMDw3fk69DYMRF5cCkuwB9QKTjV5oUpLlyhGCb5ZwuVg2Lg3497f804Oj0KSLtsyMHWMyxm1pEJuveIku8iRRP8xPpvUIPzt3Yevsxf6vG54fZhlf-Bu/file?dl=1#)
 
 ## Project status meanings
  * **Refactoring:** Structural and technical changes have currently priority.
