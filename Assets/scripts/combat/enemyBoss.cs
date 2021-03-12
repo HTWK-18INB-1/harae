@@ -15,6 +15,7 @@ public class enemyBoss : MonoBehaviour
     public float speed;
 
     private bool startRunJump=false; 
+    private float dist=100;
     
     // Start is called before the first frame update
     void Start()
@@ -25,21 +26,28 @@ public class enemyBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //spawns a Zombie random on map -> who attacks enemy(player)
         if(Input.GetKeyDown(KeyCode.S)){
             spawnZombie();
         }
 
-        if(Input.GetKeyDown(KeyCode.R)){
+        //appear of boss
+        if(Input.GetKeyDown(KeyCode.A)){        
             if(animator != null){
-                //change animation
-                animator.SetLayerWeight(0,0);
-                animator.SetLayerWeight(1,1);
+                animator.SetBool("startTaunt",true);
             }
-            
-            startRunJump = true;
-            
         }
+
+        //taunt player
+        if(Input.GetKeyDown(KeyCode.B)){        
+            if(animator != null){
+                animator.SetBool("startRun",true);
+
+            }
+            startRunJump = true;
+        }
+
 
         if(startRunJump){
                 runjump();
@@ -54,9 +62,9 @@ public class enemyBoss : MonoBehaviour
         Instantiate(zombie,position,Quaternion.identity);
     }
 
+    //connected animation an movement toward player
     void runjump()
     {
-            float dist=100;
             if(dist>minDistance)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);

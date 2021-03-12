@@ -14,9 +14,9 @@ public class LightGuide : MonoBehaviour
 
     private Light light;
     //private Halo halo;
-    private Color startingColor=Color.red;
+    private Color startingColor;
 
-    private float movementSpeed = 0.5f;
+    public float movementSpeed;
 
     Vector3 targetPosition;
     Vector3 currentPosition;
@@ -32,12 +32,14 @@ public class LightGuide : MonoBehaviour
     void Start()
     {
         light = GetComponent<Light>();
+        startingColor = light.color; //light.color
         //halo = GetComponent<Halo>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        moveToDestination(player);
         if(Input.GetKeyDown(KeyCode.Y)){
             isMove[0] = true;
         }
@@ -45,7 +47,7 @@ public class LightGuide : MonoBehaviour
         if(isMove[0]){
             //isMove[1]=moveToDestination(targetOne);
             if(firstStart[0]){
-                startPosition[0] = player.transform.position;
+                startPosition[0] = this.transform.position;
             }
             firstStart[0] = false;
             changeColor(targetOne,startPosition[0]);
@@ -55,7 +57,7 @@ public class LightGuide : MonoBehaviour
             isMove[0]=false;
             //isMove[2]=moveToDestination(targetTwo);
             if(firstStart[1]){
-                startPosition[1] = player.transform.position;
+                startPosition[1] = this.transform.position;
             }
             firstStart[1] = false;
             changeColor(targetTwo,startPosition[1]);
@@ -65,7 +67,7 @@ public class LightGuide : MonoBehaviour
             isMove[1]=false;
             //moveToDestination(finalBook);
             if(firstStart[2]){
-                startPosition[2] = player.transform.position;
+                startPosition[2] = this.transform.position;
             }
             firstStart[2] = false;
             changeColor(finalBook,startPosition[2]);
@@ -103,9 +105,12 @@ public class LightGuide : MonoBehaviour
         newDistance = Vector3.Distance(currentPosition,targetPosition);
         startDistance = Vector3.Distance(startPositionf,targetPosition);
 
-        float ratio = newDistance/(newDistance+startDistance);
+        float ratio = 1-(newDistance/startDistance);
+        Debug.Log("RATIO -> " + ratio);
+        Debug.Log("newDistance -> " + newDistance);
+        Debug.Log("startDistance -> " + startDistance);
 
-        light.color = Color.Lerp(startingColor,Color.white,1-ratio);
+        light.color = Color.Lerp(startingColor,Color.red,ratio);
 
         Debug.Log(ratio);
     }
