@@ -6,47 +6,93 @@ using UnityEngine;
 public class enemyMovement : MonoBehaviour
 {
     public GameObject player;
+
     public float speed;
     public float minDistance;
+
     public Animator animator;
-    bool inDistance = false;
+    
+    public float attackRange = 1f;
+    public Transform attackPoint;
+    public int damage;
+    public float attackSpeed = 5f;
+    private float nextAttack= 0f;
+
+    public LayerMask playerLayers;
+
+    private bool inDistance = false;
+    private bool startAnimation = false;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        Thread.Sleep(2000);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.R)) {
-            begin();
+            animator.SetBool("startAnimation",true);
+            startAnimation = true;
+        }
+
+        if(startAnimation){
+            fight();
         }
 
     }
 
-    public void begin(){
-        transform.LookAt(player.transform);
+    void moveToPlayer(){    //move to player
+        //transform.LookAt(player.transform);
         if(!inDistance){
-        Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1 * Time.deltaTime);
-        transform.position += transform.forward * speed * Time.deltaTime;
+        Vector3 newPos = new Vector3(player.transform.position.x,0,player.transform.position.z);    
 
+        /* Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1 * Time.deltaTime);
+         */
+         transform.position = Vector3.MoveTowards(transform.position,newPos,speed * Time.deltaTime);
         }
+    }
+
+    void checkHit(){    //hit physics(reduce live)
+        Collider[] hitPlayer=Physics.OverlapSphere(attackPoint.position,attackRange,playerLayers); //size = 1
+        foreach(Collider enemy in hitPlayer){
+            Debug.Log("we hit it " + enemy.name);
+            enemy.GetComponent<playerCombat>().takeDamage(damage);
+        }
+    }
+
+    void checkRange(){  //check if enemy inRange
         
         float dist = Vector3.Distance(player.transform.position,transform.position);
         if(dist < minDistance) {
-            animator.SetLayerWeight(0,0f);
-            animator.SetLayerWeight(1,1f);
-            inDistance = true;
-            
+            if(Time.time > nextAttack){ //check if attack ready
+                inDistance = true;
+                nextAttack = Time.time + attackSpeed;
+                animator.SetTrigger("meleeAttack");
+                if(animator.GetCurrentAnimatorStateInfo(0).IsName("standUp.zombiePunch")){
+                    Debug.Log("weiter");
+                    checkHit();
+                }   
+            }
         }
 
         if(dist >= minDistance) {
-            animator.SetLayerWeight(1,0f);
-            animator.SetLayerWeight(0,1f);
             inDistance = false;
         }
     }
+
+    public void fight(){
+        
+        moveToPlayer();
+        checkRange();
+         
+    }
+
+    
+
+    
 }

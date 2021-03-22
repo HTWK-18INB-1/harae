@@ -7,15 +7,20 @@ public class enemyBoss : MonoBehaviour
     public GameObject zombie;
     public GameObject spawnAnimation; 
     public GameObject player;
+    public Transform attackPoint;
+    public LayerMask playerLayers;
     private Animator animator;
-
     
+    private float dist;
     public float minDistance;
+
     public float health; 
     public float speed;
+    public float attackRange = 0.5f;
 
-    private bool startRunJump=false; 
-    private float dist=100;
+    private bool startRun=false; 
+    private bool inRange=false;
+    private bool attackReady = true;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +31,10 @@ public class enemyBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dist = Vector3.Distance(player.transform.position,transform.position);
+        if(dist<=minDistance) {
+            inRange = true;
+        }
         
         //spawns a Zombie random on map -> who attacks enemy(player)
         if(Input.GetKeyDown(KeyCode.S)){
@@ -35,23 +44,24 @@ public class enemyBoss : MonoBehaviour
         //appear of boss
         if(Input.GetKeyDown(KeyCode.A)){        
             if(animator != null){
-                animator.SetBool("startTaunt",true);
+                animator.SetBool("startBattlecry",true);
             }
         }
 
-        //taunt player
-        if(Input.GetKeyDown(KeyCode.B)){        
-            if(animator != null){
-                animator.SetBool("startRun",true);
-
-            }
-            startRunJump = true;
+        if(Input.GetKeyDown(KeyCode.B)){
+            animator.SetTrigger("startRun");
+            startRun = true;
         }
 
-
-        if(startRunJump){
-                runjump();
-            }
+        if(startRun){
+                runToPlayer();
+            } 
+        
+        if(inRange && attackReady){
+            attack();
+            animator.SetBool("startBattlecry",false); //when fight began -> stop looping
+            
+        }
         
 
     }
@@ -63,7 +73,7 @@ public class enemyBoss : MonoBehaviour
     }
 
     //connected animation an movement toward player
-    void runjump()
+    /* void runjump()
     {
             if(dist>minDistance)
             {
@@ -80,10 +90,33 @@ public class enemyBoss : MonoBehaviour
                 animator.SetBool("isInRange",true);
             }
             
-    }
+    } */
 
         
+        void runToPlayer(){
+            if(dist>minDistance)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1 * Time.deltaTime);
+                transform.position += transform.forward * speed* Time.deltaTime;
+                transform.LookAt(player.transform);
+                dist = Vector3.Distance(player.transform.position,transform.position);
+            }
 
+            else{
+                inRange = true;
+                startRun = false;
+            }
+        }
+
+        void attack(){
+            animator.SetTrigger("wipeAttack");
+            attackReady = false;
+            Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position,attackRange,playerLayers);
+            foreach(Collider enemy in hitPlayer){
+                Debug.Log("He hit the player!");
+            }
+        }
 
     }
 
