@@ -1,0 +1,65 @@
+# GitHub Actions issue creation workflow
+#
+# Inspired by: https://github.com/srggrs/assign-one-project-github-action
+# Created: 2021 by Vivien Richter <vivien-richter@outlook.de>
+# License: CC BY 4.0
+name: New issue
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on issue creation events
+  issues:
+    types: [opened]
+
+# Sets environment variables
+env:
+  REQUEST_RETRY_NUMBER: 3
+  REQUEST_RETRY_DELAY: 5 # in seconds
+  API_URL_GITHUB: ${{github.api_url}}
+  API_URL_CLOCKIFY: ${{secrets.CLOCKIFY_API_URL}}
+  API_AUTH_TOKEN_GITHUB: ${{github.token}}
+  API_AUTH_TOKEN_CLOCKIFY: ${{secrets.API_AUTH_TOKEN_CLOCKIFY}}
+  API_USER_GITHUB: ${{github.actor}}
+  GITHUB_PROJECT_BOARD_COLUMN_ID: ${{secrets.PROJECT_BOARD_TODO_COLUMN_ID}}
+  CLOCKIFY_WORKSPACE_ID: ${{secrets.CLOCKIFY_WORKSPACE_ID}}
+  CLOCKIFY_PROJECT_ID: ${{secrets.CLOCKIFY_PROJECT_ID}}
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # Project board
+  assign_project:
+    name: Assign issue to project board
+    runs-on: ubuntu-latest
+    steps:
+      # Collects required issue properties
+      - name: Get issue ID
+        run: echo "ISSUE_ID=$(jq -r '.issue.id' < $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
+
+      # Assigns issue
+      - name: Assign issue to project
+        run: >
+          curl -s --retry "$REQUEST_RETRY_NUMBER" --retry-delay "$REQUEST_RETRY_DELAY"
+          -u "$API_USER_GITHUB:$API_AUTH_TOKEN_GITHUB"
+          -H "Accept: application/vnd.github.inertia-preview+json"
+          -X POST "$API_URL_GITHUB/projects/columns/$GITHUB_PROJECT_BOARD_COLUMN_ID/cards"
+          -d "{\"content_type\": \"Issue\", \"content_id\": ${{env.ISSUE_ID}}}"
+
+  # Time tracking system
+  create_task:
+    name: Create task at time tracking system
+    runs-on: ubuntu-latest
+    steps:
+      # Collects required issue properties
+      - name: Get issue number and title
+        run: |
+          echo "ISSUE_NUMBER=$(jq -r '.issue.number' < $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
+          echo "ISSUE_TITLE=$(jq -r '.issue.title' < $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
+
+      # Creates task
+      - name: Create task at time tracking system
+        run: >
+          curl -s --retry "$REQUEST_RETRY_NUMBER" --retry-delay "$REQUEST_RETRY_DELAY"
+          -H "Content-Type: application/json"
+          -H "X-Api-Key: $API_AUTH_TOKEN_CLOCKIFY"
+          -X POST "$API_URL_CLOCKIFY/workspaces/$CLOCKIFY_WORKSPACE_ID/projects/$CLOCKIFY_PROJECT_ID/tasks"
+          -d "{\"name\": \"#${{env.ISSUE_NUMBER}} ${{env.ISSUE_TITLE}}\"}"

@@ -4,7 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Oculus/VR/Scenes/ControllerTest.unity
+    guid: d56af3aeb2176e7459f753c1c2e2dd97
+  - enabled: 0
+    path: Assets/Oculus/VR/Scenes/ControllerModels.unity
+    guid: 39cfe7aa0a2d46c47994d8d0308ec663
+  - enabled: 0
+    path: Assets/Oculus/VR/Scenes/HandTest_Custom.unity
+    guid: c884d076d6398b54492bcc64bbe30bf5
+  - enabled: 1
+    path: Assets/Scenes/VRSampleScene.unity
+    guid: f4c0dad04de222fea8ebce54f1b95efb
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5d184b78c87289946b1d10afd0f07a4c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1f16a5c770e6e9645b39fd3df5f41d36, type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 4291cc8e755eb49479b647ace2602fa7, type: 2}

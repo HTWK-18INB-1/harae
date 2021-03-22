@@ -1,0 +1,51 @@
+# GitHub Actions issue reopened workflow
+#
+# Created: 2021 by Vivien Richter <vivien-richter@outlook.de>
+# License: CC BY 4.0
+name: Reopened issue
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on issue reopening events
+  issues:
+    types: [reopened]
+
+# Sets environment variables
+env:
+  REQUEST_RETRY_NUMBER: 3
+  REQUEST_RETRY_DELAY: 5 # in seconds
+  API_URL_CLOCKIFY: ${{secrets.CLOCKIFY_API_URL}}
+  API_AUTH_TOKEN_CLOCKIFY: ${{secrets.API_AUTH_TOKEN_CLOCKIFY}}
+  CLOCKIFY_WORKSPACE_ID: ${{secrets.CLOCKIFY_WORKSPACE_ID}}
+  CLOCKIFY_PROJECT_ID: ${{secrets.CLOCKIFY_PROJECT_ID}}
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # Time tracking system
+  reopen_task:
+    name: Reopening task at time tracking system
+    runs-on: ubuntu-latest
+    steps:
+      # Collects required issue properties
+      - name: Get issue number and title
+        run: |
+          echo "ISSUE_NUMBER=$(jq -r '.issue.number' < $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
+          echo "ISSUE_TITLE=$(jq -r '.issue.title' < $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
+
+      # Gets task ID
+      - name: Get task ID
+        run: >
+          echo "TASK_ID=$(curl -s --retry "$REQUEST_RETRY_NUMBER" --retry-delay "$REQUEST_RETRY_DELAY"
+          -H "Content-Type: application/json"
+          -H "X-Api-Key: $API_AUTH_TOKEN_CLOCKIFY"
+          -X GET "$API_URL_CLOCKIFY/workspaces/$CLOCKIFY_WORKSPACE_ID/projects/$CLOCKIFY_PROJECT_ID/tasks?name=${{env.ISSUE_NUMBER}}"
+          | jq -r '.[].id')" >> $GITHUB_ENV
+
+      # Reopening task
+      - name: Reopen task
+        run: >
+          curl -s --retry "$REQUEST_RETRY_NUMBER" --retry-delay "$REQUEST_RETRY_DELAY"
+          -H "Content-Type: application/json"
+          -H "X-Api-Key: $API_AUTH_TOKEN_CLOCKIFY"
+          -X PUT "$API_URL_CLOCKIFY/workspaces/$CLOCKIFY_WORKSPACE_ID/projects/$CLOCKIFY_PROJECT_ID/tasks/${{env.TASK_ID}}"
+          -d "{\"name\": \"#${{env.ISSUE_NUMBER}} ${{env.ISSUE_TITLE}}\", \"status\": \"ACTIVE\"}"
