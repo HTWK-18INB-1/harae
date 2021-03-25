@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class LightGuide : MonoBehaviour
 {
-    bool[] isMove = new bool[3] {false,false,false};
+    private InputDevice inputController; 
+
+    bool[] isMove = new bool[2] {false,false};
     
     private GameObject player;
 
@@ -13,6 +16,12 @@ public class LightGuide : MonoBehaviour
 
     public GameObject finalBook;
     public GameObject firstBook;
+
+    public GameObject rightHandPlayer;
+    public GameObject leftHandPlayer;
+
+    public GameObject rightHandParticle;
+    public GameObject leftHandParticle;
 
     private Light light;
     //private Halo halo;
@@ -32,6 +41,8 @@ public class LightGuide : MonoBehaviour
 
     public float helper = 0f;
 
+    public bool isFinished = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,12 +59,20 @@ public class LightGuide : MonoBehaviour
         lvlProcedure();
     }
 
+    void addParticle(GameObject hand, GameObject particle){
+        particle.transform.SetParent(hand.transform);
+    }
 
-    void riseAndShine(GameObject book,int childIndex){
+    void riseAndShine(GameObject book,int childIndex,GameObject hand, GameObject particle){
             book.transform.GetChild(childIndex).gameObject.GetComponent<ParticleSystem>().Play();
             if(book.transform.position.y < 3){
                 Vector3 temp = book.transform.position;
                 book.transform.position += new Vector3(0,1*Time.deltaTime,0);
+            }
+
+            else {
+                Destroy(book);
+                addParticle(hand,particle);
             }
 
         }
@@ -67,8 +86,8 @@ public class LightGuide : MonoBehaviour
             }
             firstStart[0] = false;
             changeColor(firstBook,startPosition[0]);
-            if(helper>5){
-                riseAndShine(firstBook,5);
+            if(inputController.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue){
+                riseAndShine(firstBook,5,rightHandPlayer,rightHandParticle);
             }
             
         }
@@ -82,18 +101,18 @@ public class LightGuide : MonoBehaviour
             firstStart[1] = false;
             changeColor(finalBook,startPosition[1]);
             if(helper>10){
-                riseAndShine(finalBook,3);
+                riseAndShine(finalBook,3,leftHandPlayer,leftHandParticle);
             }
         }
 
         //TODO : wenn zweites Item gefunden dann -> 
-
+            //isFinished = true;
             enemyAppear();
         
 
     }
 
-    bool moveToDestination(GameObject destination){
+    void moveToDestination(GameObject destination){
         targetPosition = destination.transform.position; // Get position of object B
         currentPosition = this.transform.position; // Get position of object A
         directionOfTravel = targetPosition - currentPosition;
@@ -106,12 +125,7 @@ public class LightGuide : MonoBehaviour
                 (directionOfTravel.x * movementSpeed * Time.deltaTime),
                 (directionOfTravel.y * movementSpeed * Time.deltaTime),
                 (directionOfTravel.z * movementSpeed * Time.deltaTime));
-            return false;
          }
-
-        else {                  // if player grabbed item toFind
-            return true;
-        }
     }
 
     void changeColor(GameObject destination,Vector3 startPositionf) {
@@ -125,11 +139,11 @@ public class LightGuide : MonoBehaviour
     }
 
     void enemyAppear(){
-        if(enemyBoss.transform.position.y<0){
+        if(enemyBoss.transform.position.y<0 && isFinished){
             bossParticle.GetComponent<ParticleSystem>().Play();
             Vector3 temp = bossParticle.transform.position;
             enemyBoss.transform.position += new Vector3(0,3*Time.deltaTime,0);
-                bossParticle.transform.position = temp;
+            bossParticle.transform.position = temp;
         }
 
         

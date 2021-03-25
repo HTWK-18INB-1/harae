@@ -382,39 +382,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 49bfd2e7a273e7a4ca574b30808dd0b4, type: 3}
   m_PrefabInstance: {fileID: 1658778798}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &67998907 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
-  m_PrefabInstance: {fileID: 814800138}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &67998908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67998907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47e9ea45bcfba2b394731ebef681038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  speed: 1
-  minDistance: 5
-  animator: {fileID: 67998909}
-  attackRange: 1
-  attackPoint: {fileID: 0}
-  damage: 0
-  attackSpeed: 8
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!95 &67998909 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
-  m_PrefabInstance: {fileID: 814800138}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &75091131
 GameObject:
   m_ObjectHideFlags: 0
@@ -10539,7 +10506,7 @@ GameObject:
   - component: {fileID: 200556577}
   - component: {fileID: 200556578}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: helpLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10659,45 +10626,17 @@ MonoBehaviour:
   enemyBoss: {fileID: 1950689534}
   finalBook: {fileID: 569378541}
   firstBook: {fileID: 1628775297}
+  rightHandPlayer: {fileID: 1345529492}
+  leftHandPlayer: {fileID: 784600156}
+  rightHandParticle: {fileID: 1820680284854294, guid: 1a1c02facd51d87458dcaa3a761e2c03, type: 3}
+  leftHandParticle: {fileID: 1314945738539566, guid: 32c9fd11a72259d45aa26ae41c34c5aa, type: 3}
   movementSpeed: 1.59
   helper: 0
+  isFinished: 0
 --- !u!4 &211621869 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 043111edfa1d129478e041d0c2a324c8, type: 3}
   m_PrefabInstance: {fileID: 186918219}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &212835016 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
-  m_PrefabInstance: {fileID: 914901164}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &212835017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212835016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47e9ea45bcfba2b394731ebef681038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  speed: 3.4
-  minDistance: 5
-  animator: {fileID: 212835018}
-  attackRange: 24.57
-  attackPoint: {fileID: 475896819}
-  damage: 27
-  attackSpeed: 8
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 256
---- !u!95 &212835018 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
-  m_PrefabInstance: {fileID: 914901164}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &214645966
 GameObject:
@@ -11937,11 +11876,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 043111edfa1d129478e041d0c2a324c8, type: 3}
---- !u!4 &475896819 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -1824824446595371411, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
-  m_PrefabInstance: {fileID: 914901164}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &497752900
 GameObject:
   m_ObjectHideFlags: 0
@@ -32404,39 +32338,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 49bfd2e7a273e7a4ca574b30808dd0b4, type: 3}
   m_PrefabInstance: {fileID: 456587174}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &895449330 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
-  m_PrefabInstance: {fileID: 1022802487}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &895449331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895449330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47e9ea45bcfba2b394731ebef681038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  speed: 1
-  minDistance: 5
-  animator: {fileID: 895449332}
-  attackRange: 1
-  attackPoint: {fileID: 0}
-  damage: 0
-  attackSpeed: 8
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!95 &895449332 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
-  m_PrefabInstance: {fileID: 1022802487}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &900657174
 PrefabInstance:
@@ -58424,13 +58325,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2cf043b925411d42b879debad3f7026e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.389
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 156
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -63923,9 +63824,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 40d89a86e5ca42543a96371966420eb7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8118f9ebb370ce732962972e41b8507d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.238
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -64020,14 +63921,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ad26a33ce7324884f819b18e2ed80c60, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 50
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -64040,23 +63941,32 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.002
       value: 1
       inSlope: 0
       outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6588635
+      value: 0.9972551
+      inSlope: 0.012825629
+      outSlope: 0.012825629
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.9940491
+      inSlope: -1.002004
+      outSlope: -1.002004
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -64372,39 +64282,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1e2ef0cc5c65717479848f40d793d3ee, type: 3}
   m_PrefabInstance: {fileID: 1400342803}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1640525181 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
-  m_PrefabInstance: {fileID: 1335948204}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1640525182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640525181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47e9ea45bcfba2b394731ebef681038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  speed: 1
-  minDistance: 5
-  animator: {fileID: 1640525183}
-  attackRange: 1
-  attackPoint: {fileID: 0}
-  damage: 27
-  attackSpeed: 8
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!95 &1640525183 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
-  m_PrefabInstance: {fileID: 1335948204}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1658778798
 PrefabInstance:
@@ -103986,11 +103863,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombie: {fileID: 6402559964741384617, guid: 32db0447263f27ca79a8af3b08980a8b, type: 3}
   spawnAnimation: {fileID: 4510279107870993688, guid: 0917d80ff1f66d7a48cc215a5048e9f7, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 2070153085}
   attackPoint: {fileID: 0}
   playerLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   minDistance: 10
   health: 100
   speed: 10
@@ -110003,6 +109880,7 @@ GameObject:
   - component: {fileID: 1543575786}
   - component: {fileID: 1543575787}
   - component: {fileID: 1543575785}
+  - component: {fileID: 919132149512496910}
   m_Layer: 0
   m_Name: graveyard1
   m_TagString: Untagged
@@ -110010,6 +109888,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132149512496910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149512496909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a4ae222fdd05f28936ff3b31509809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []
 --- !u!33 &1048724835569290064
 MeshFilter:
   m_ObjectHideFlags: 0

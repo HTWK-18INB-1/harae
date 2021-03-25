@@ -13,19 +13,27 @@ public class enemyBoss : MonoBehaviour
     
     private float dist;
     public float minDistance;
+    private float spawnTime = 8f;
 
     public float health; 
     public float speed;
-    public float attackRange = 0.5f;
+    public float attackRange;
 
     private bool startRun=false; 
     private bool inRange=false;
-    private bool attackReady = true;
+    private bool attackReady,spawnReady = true;
+
+    GameObject light;
+    LightGuide lightScript;
+
     
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        light = GameObject.Find("helpLight");
+        lightScript = light.GetComponent<LightGuide>();
+
     }
 
     // Update is called once per frame
@@ -35,23 +43,30 @@ public class enemyBoss : MonoBehaviour
         if(dist<=minDistance) {
             inRange = true;
         }
+
+        //start spawn animation when light part fisihed
+        if(lightScript.isFinished && spawnReady) {
+            animator.SetTrigger("standUp");
+            spawnReady = false;
+        }
         
-        //spawns a Zombie random on map -> who attacks enemy(player)
-        if(Input.GetKeyDown(KeyCode.S)){
+        //spawns a Zombie random on map -> who attacks enemy(player),every x seconds
+        spawnTime -= Time.deltaTime;
+        if(spawnTime <0){
             spawnZombie();
+            spawnTime = 8f;
         }
+        
+        
 
+        
         //appear of boss
-        if(Input.GetKeyDown(KeyCode.A)){        
-            if(animator != null){
-                animator.SetBool("startBattlecry",true);
-            }
-        }
+        animator.SetBool("startBattlecry",true);
 
-        if(Input.GetKeyDown(KeyCode.B)){
-            animator.SetTrigger("startRun");
-            startRun = true;
-        }
+
+        /* animator.SetTrigger("startRun");
+        startRun = true;
+        
 
         if(startRun){
                 runToPlayer();
@@ -59,43 +74,22 @@ public class enemyBoss : MonoBehaviour
         
         if(inRange && attackReady){
             attack();
-            animator.SetBool("startBattlecry",false); //when fight began -> stop looping
+            animator.SetBool("startBattlecry",false); //when fight began -> stop looping */
             
-        }
         
-
     }
 
+    
+
     void spawnZombie(){
-        Vector3 position = new Vector3(Random.Range(0f,50f),0,Random.Range(-10f,10f));
+        Vector3 position = new Vector3(Random.Range(-50f,60f),0,Random.Range(-45f,45f));
         Instantiate(spawnAnimation,position,Quaternion.identity);
         Instantiate(zombie,position,Quaternion.identity);
     }
 
-    //connected animation an movement toward player
-    /* void runjump()
-    {
-            if(dist>minDistance)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1 * Time.deltaTime);
-                transform.position += transform.forward * speed* Time.deltaTime;
-                animator.SetBool("isInRange",false);
-                transform.LookAt(player.transform);
-                dist = Vector3.Distance(player.transform.position,transform.position);
-            }
-
-            else
-            {
-                animator.SetBool("isInRange",true);
-            }
-            
-    } */
-
         
-        void runToPlayer(){
-            if(dist>minDistance)
-            {
+    void runToPlayer(){
+            if(dist>minDistance){
                 Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1 * Time.deltaTime);
                 transform.position += transform.forward * speed* Time.deltaTime;
@@ -118,5 +112,5 @@ public class enemyBoss : MonoBehaviour
             }
         }
 
-    }
+}
 

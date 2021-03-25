@@ -41,6 +41,8 @@ This is an simple virtual reality exorcism game.
 	* [Yaku J Ignite]
 	* [Scary Zombie Pack]
 	* [Creature NPC Pack]
+ * [Music]
+ 	*[Boss Baatle Music](https://opengameart.org/content/boss-battle-music)
 
 ## Unity Packages
  * [XR Plugin Management](https://docs.unity3d.com/Packages/com.unity.xr.management@3.2/manual/index.html) (10.02.2021)
