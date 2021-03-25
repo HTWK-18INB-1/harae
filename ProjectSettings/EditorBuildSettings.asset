@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/VRSampleScene.unity
     guid: f4c0dad04de222fea8ebce54f1b95efb
   - enabled: 1
-    path: Assets/tunnel.unity
+    path: Assets/Scenes/tunnel.unity
     guid: b98ac6f9264e71042a5e7a45c275393a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5d184b78c87289946b1d10afd0f07a4c, type: 2}
