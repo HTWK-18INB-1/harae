@@ -6,17 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Oculus/VR/Scenes/ControllerTest.unity
+    path: 
     guid: d56af3aeb2176e7459f753c1c2e2dd97
   - enabled: 0
-    path: Assets/Oculus/VR/Scenes/ControllerModels.unity
+    path: 
     guid: 39cfe7aa0a2d46c47994d8d0308ec663
   - enabled: 0
-    path: Assets/Oculus/VR/Scenes/HandTest_Custom.unity
+    path: 
     guid: c884d076d6398b54492bcc64bbe30bf5
   - enabled: 1
     path: Assets/Scenes/VRSampleScene.unity
     guid: f4c0dad04de222fea8ebce54f1b95efb
+  - enabled: 1
+    path: Assets/tunnel.unity
+    guid: b98ac6f9264e71042a5e7a45c275393a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5d184b78c87289946b1d10afd0f07a4c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1f16a5c770e6e9645b39fd3df5f41d36, type: 2}
