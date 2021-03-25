@@ -49,7 +49,7 @@ public class LightGuide : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         light = GetComponent<Light>();
         startingColor = light.color;
-        bossParticle = enemyBoss.transform.GetChild(2).gameObject;
+        
     }
 
     // Update is called once per frame
@@ -107,7 +107,7 @@ public class LightGuide : MonoBehaviour
 
         //TODO : wenn zweites Item gefunden dann -> 
             //isFinished = true;
-            enemyAppear();
+            
         
 
     }
@@ -138,15 +138,7 @@ public class LightGuide : MonoBehaviour
         light.color = Color.Lerp(startingColor,Color.red,ratio);
     }
 
-    void enemyAppear(){
-        if(enemyBoss.transform.position.y<0 && isFinished){
-            bossParticle.GetComponent<ParticleSystem>().Play();
-            Vector3 temp = bossParticle.transform.position;
-            enemyBoss.transform.position += new Vector3(0,3*Time.deltaTime,0);
-            bossParticle.transform.position = temp;
-        }
-
         
         
-    }
+    
 }

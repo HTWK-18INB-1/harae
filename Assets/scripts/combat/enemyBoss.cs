@@ -25,6 +25,7 @@ public class enemyBoss : MonoBehaviour
 
     GameObject light;
     LightGuide lightScript;
+    private GameObject bossParticle;
 
     
     // Start is called before the first frame update
@@ -33,6 +34,7 @@ public class enemyBoss : MonoBehaviour
         animator = GetComponent<Animator>();
         light = GameObject.Find("helpLight");
         lightScript = light.GetComponent<LightGuide>();
+        bossParticle = this.transform.GetChild(2).gameObject;
 
     }
 
@@ -47,6 +49,7 @@ public class enemyBoss : MonoBehaviour
         //start spawn animation when light part fisihed
         if(lightScript.isFinished && spawnReady) {
             animator.SetTrigger("standUp");
+            enemyAppear();
             spawnReady = false;
         }
         
@@ -112,5 +115,13 @@ public class enemyBoss : MonoBehaviour
             }
         }
 
+        void enemyAppear(){
+        if(this.transform.position.y<0){
+            bossParticle.GetComponent<ParticleSystem>().Play();
+            Vector3 temp = bossParticle.transform.position;
+            this.transform.position += new Vector3(0,3*Time.deltaTime,0);
+            bossParticle.transform.position = temp;
+            }
+        }
 }
 
