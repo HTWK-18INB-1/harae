@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InstZombie : MonoBehaviour
 {
-    Transform player;
+    private GameObject player;
     public float speed;
     public float minDistance;
     public Animator animator;
@@ -12,8 +12,7 @@ public class InstZombie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bool inDistance = false;
-        player = Camera.main.GetComponent<Transform>();
+        player = player = GameObject.FindGameObjectWithTag("Player");
         transform.LookAt(player.transform);
     }
 
@@ -21,23 +20,25 @@ public class InstZombie : MonoBehaviour
     void Update()
     {
         if(!inDistance){
-        Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1 * Time.deltaTime);
-        transform.position += transform.forward * speed * Time.deltaTime;
-
+            Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1 * Time.deltaTime);
+            transform.position += transform.forward * speed * Time.deltaTime;
+            Vector3 pos = transform.position;
+            pos.y = 1;
+            transform.position = pos;
         }
         
-        float dist = Vector3.Distance(player.position,transform.position);
+        Vector3 vectorToTarget = GameObject.FindWithTag("Player").transform.position - transform.position;
+        vectorToTarget.y = 0;
+        float dist = vectorToTarget.magnitude;
         if(dist < minDistance) {
-            animator.SetLayerWeight(0,0f);
-            animator.SetLayerWeight(1,1f);
+            animator.SetTrigger("meleeAttack");
             inDistance = true;
             
         }
 
         if(dist >= minDistance) {
-            animator.SetLayerWeight(1,0f);
-            animator.SetLayerWeight(0,1f);
+            animator.SetBool("inRange",false);
             inDistance = false;
         }
     }

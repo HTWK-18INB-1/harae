@@ -24,7 +24,6 @@ public class LightGuide : MonoBehaviour
     public GameObject leftHandParticle;
 
     private Light light;
-    //private Halo halo;
     private Color startingColor;
 
     public float movementSpeed;
@@ -88,6 +87,7 @@ public class LightGuide : MonoBehaviour
             changeColor(firstBook,startPosition[0]);
             if(inputController.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue){
                 riseAndShine(firstBook,5,rightHandPlayer,rightHandParticle);
+                isMove[1] = true;
             }
             
         }
@@ -100,8 +100,8 @@ public class LightGuide : MonoBehaviour
             }
             firstStart[1] = false;
             changeColor(finalBook,startPosition[1]);
-            if(helper>10){
-                riseAndShine(finalBook,3,leftHandPlayer,leftHandParticle);
+            if(inputController.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue){      
+                riseAndShine(finalBook,3,leftHandPlayer,leftHandParticle);  
             }
         }
 

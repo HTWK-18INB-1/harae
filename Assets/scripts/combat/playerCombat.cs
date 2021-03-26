@@ -2,16 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class playerCombat : MonoBehaviour
 {
     public float damage;
     public float range ;
-    public ParticleSystem fireParticle;
-    //public GameObject impactEffect;
+    public GameObject shootParticleObject;
+    private ParticleSystem shootParticle;
     public float speed;
     public int maxHealth;
     private int currentHealth;
+
+    public InputDevice inputController;
 
 
 
@@ -19,67 +22,40 @@ public class playerCombat : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        shootParticle = shootParticleObject.GetComponent<ParticleSystem>();
     }
+    
 
     // Update is called once per frame
     void Update()
     {
         //shoot on enemy
-        if(Input.GetKeyDown(KeyCode.I)){
+        if(inputController.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue){
             shoot();
-            Debug.Log("SCHUSS");
         }
-
-        //Movement
-        basicMovement();
         
     }
 
     private void shoot()
     {
         RaycastHit hit;
-        fireParticle.Play();
+        shootParticle.Play();
         if(Physics.Raycast(this.transform.position,this.transform.forward,out hit,range)){
             Target target = hit.transform.GetComponent<Target>();
             Debug.Log(target);
             if(target != null) {
                 target.takeDamage(damage);
-                //GameObject instGO = Instantiate(impactEffect,hit.point,Quaternion.LookRotation(hit.normal));
-                //Destroy(instGO,2f);
                 Debug.Log("TREFFER!");
                 
             }
         }
     }
 
-    private void basicMovement(){
-        if(Input.GetKey(KeyCode.RightArrow))
-     {
-         transform.Translate(new Vector3(speed * Time.deltaTime,0,0));
-     }
-     if(Input.GetKey(KeyCode.LeftArrow))
-     {
-         transform.Translate(new Vector3(-speed * Time.deltaTime,0,0));
-     }
-     if(Input.GetKey(KeyCode.DownArrow))
-     {
-         transform.Translate(new Vector3(0,0,-speed * Time.deltaTime));
-     }
-     if(Input.GetKey(KeyCode.UpArrow))
-     {
-         transform.Translate(new Vector3(0,0,speed * Time.deltaTime));
-     }
-
-     if(Input.GetKey(KeyCode.Space))
-     {
-         transform.Translate(new Vector3(0,speed * Time.deltaTime,0));
-     }
-    }
-
     public void takeDamage(int damage) {
         currentHealth -= damage;
         //hit animation (blood splashes etc.)
         Debug.Log(currentHealth);
+
         if(currentHealth <=0){
             Die();
         }
@@ -93,11 +69,16 @@ public class playerCombat : MonoBehaviour
         return maxHealth;
     }
 
+    void PauseGame ()
+    {
+        Time.timeScale = 0;
+    }
 
     void Die(){
         //die animation
-        //disable enemys
 
-        Debug.Log("player died");
+        //disable enemys
+        PauseGame();
+
     }
 }

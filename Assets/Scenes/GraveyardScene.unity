@@ -32179,7 +32179,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ec272146ee69c96f6a0ac879cb62efca, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
 --- !u!1001 &842523585
 PrefabInstance:
@@ -32567,7 +32568,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
 --- !u!1 &929751660
 GameObject:
@@ -32832,7 +32834,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ec272146ee69c96f6a0ac879cb62efca, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
 --- !u!4 &1023264556 stripped
 Transform:
@@ -52779,7 +52782,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ec272146ee69c96f6a0ac879cb62efca, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5b5a11a50f466b5f48a4bbfa657c0a23, type: 3}
 --- !u!1 &1345529492
 GameObject:
@@ -52793,6 +52797,7 @@ GameObject:
   - component: {fileID: 1345529496}
   - component: {fileID: 1345529495}
   - component: {fileID: 1345529494}
+  - component: {fileID: 1345529497}
   m_Layer: 0
   m_Name: Right Hand
   m_TagString: Untagged
@@ -52911,6 +52916,23 @@ MonoBehaviour:
   m_MoveObjectIn: 14
   m_MoveObjectOut: 15
   m_PoseProvider: {fileID: 0}
+--- !u!114 &1345529497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345529492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6de75bf2cce5eb4d85a3def8e9ea7ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  range: 0
+  shootParticleObject: {fileID: 0}
+  speed: 0
+  maxHealth: 0
 --- !u!1 &1346541592
 GameObject:
   m_ObjectHideFlags: 0
@@ -103863,15 +103885,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombie: {fileID: 6402559964741384617, guid: 32db0447263f27ca79a8af3b08980a8b, type: 3}
   spawnAnimation: {fileID: 4510279107870993688, guid: 0917d80ff1f66d7a48cc215a5048e9f7, type: 3}
-  player: {fileID: 2070153085}
   attackPoint: {fileID: 0}
   playerLayers:
     serializedVersion: 2
     m_Bits: 256
   minDistance: 10
   health: 100
+  damage: 40
   speed: 10
-  attackRange: 6.59
+  attackRange: 11.86
+  nextAttack: 2
+  attackReady: 0
+  spawnReady: 1
+  attackFinished: 0
 --- !u!95 &1950689537
 Animator:
   serializedVersion: 3
@@ -104479,6 +104505,7 @@ GameObject:
   - component: {fileID: 2070153088}
   - component: {fileID: 2070153087}
   - component: {fileID: 2070153086}
+  - component: {fileID: 2070153090}
   m_Layer: 0
   m_Name: VR Rig
   m_TagString: Player
@@ -104546,6 +104573,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &2070153090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070153085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d777c496e5afff4e91a908b9df40a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showController: 0
+  controllerCharacteristics: 0
+  controllerPrefabs: []
+  handModelPrefab: {fileID: 0}
 --- !u!1001 &2073484804
 PrefabInstance:
   m_ObjectHideFlags: 0
