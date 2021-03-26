@@ -51,6 +51,24 @@ public class HandPresence : MonoBehaviour {
         }
     }
 
+    bool primary () {
+        if(targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue)
+            return primaryButtonValue;
+
+        else {
+            return !primaryButtonValue;
+        }
+    }
+    bool secondary () {
+        if(targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
+            return secondaryButtonValue;
+
+        else {
+            return !secondaryButtonValue;
+        }
+    }
+
+
     // Update is called once per frame
     void Update() {
         //spawnedHandModel.SetActive(!showController);
@@ -63,6 +81,9 @@ public class HandPresence : MonoBehaviour {
             spawnedController.SetActive(false);
             UpdateHandAnimation();
         }
+
+        primary();
+        secondary();
     }
 }
 
