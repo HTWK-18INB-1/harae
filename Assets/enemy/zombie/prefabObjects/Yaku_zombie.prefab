@@ -1470,6 +1470,7 @@ GameObject:
   - component: {fileID: 6021777730876236563}
   - component: {fileID: 392246536228157801}
   - component: {fileID: -4648353874036652514}
+  - component: {fileID: -8909998261068687965}
   m_Layer: 0
   m_Name: Yaku_zombie
   m_TagString: Untagged
@@ -1527,6 +1528,20 @@ MonoBehaviour:
   speed: 1
   minDistance: 5
   animator: {fileID: 392246536228157801}
+--- !u!114 &-8909998261068687965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402559964741384617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d60c457fb56164fb4eadd5bc5a7ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 40
+  boss: 0
 --- !u!1 &6475447398015066872
 GameObject:
   m_ObjectHideFlags: 0

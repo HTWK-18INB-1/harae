@@ -41,6 +41,7 @@ public class LightGuide : MonoBehaviour
     public float helper = 0f;
 
     public bool isFinished = false;
+    public float timer = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,8 @@ public class LightGuide : MonoBehaviour
     {
         moveToDestination(player);
         lvlProcedure();
+        timer -= Time.deltaTime;
+        if(timer <= 0) { isFinished = true; }
     }
 
     void addParticle(GameObject hand, GameObject particle){
