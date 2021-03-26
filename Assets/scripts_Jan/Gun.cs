@@ -13,7 +13,11 @@ public class Gun : MonoBehaviour {
     public Transform sphere;
 
 
+
+
     public InputDevice inputController;
+
+
 
     /*
     void Start() {
@@ -37,9 +41,19 @@ public class Gun : MonoBehaviour {
     */
 
     public void Fire() {
+        RaycastHit hit;
         GameObject spawnedBullet = Instantiate(shootParticleObject, sphere.position, sphere.rotation);
-        spawnedBullet.GetComponent<Rigidbody>().velocity = speed * sphere.forward;
- 
+        //spawnedBullet.GetComponent<Rigidbody>().velocity = speed * sphere.forward;
+        if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, range)) {
+            Target target = hit.transform.GetComponent<Target>();
+            Debug.Log(target);
+            if(target != null) {
+                target.takeDamage(damage);
+                Debug.Log("TREFFER!");
+
+            }
+        }
+
         Destroy(spawnedBullet, 2);
     }
 
