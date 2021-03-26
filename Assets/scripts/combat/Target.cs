@@ -8,10 +8,6 @@ public class Target : MonoBehaviour
     public float health;
     public bool boss;
     private ParticleSystem deathAnimation;
-
-
-    
-    
     void Die(){
         
              if(!boss){
@@ -26,11 +22,13 @@ public class Target : MonoBehaviour
     }
 
     public void takeDamage(float amount){
-        health -=amount;
-        if(health <=0f){
+ 
+        health -= amount;
+        if(health <= 0f) {
             Die();
         }
-         
+
+
 
     }
 
