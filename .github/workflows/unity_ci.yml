@@ -1,0 +1,99 @@
+# GitHub Actions Unity CI workflow
+#
+# Created: 2021 by Vivien Richter <vivien-richter@outlook.de>
+# Based on: https://game.ci/docs/github/getting-started#simple-example
+# Special thanks to: https://github.com/mob-sakai
+#
+# License: CC BY 4.0
+name: Build
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push request events but only for the $default-branch branch
+  push:
+    branches:
+      - main
+    paths:
+      - 'Assets/**'
+      - 'Packages/**'
+      - 'ProjectSettings/**'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets environment variables
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    name: Test and build Unity project 🧪
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checks the repository out
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.4
+        with:
+          lfs: true
+
+      # Configures the cache
+      - name: Configure cache
+        uses: actions/cache@v2.1.4
+        with:
+          path: Library
+          key: Library
+
+      # Runs all the tests
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v2.0-alpha-2
+        with:
+          unityVersion: ${{ secrets.UNITY_VERSION }}
+          artifactsPath: Logs/Tests
+          customParameters: -nographics # required für Unity v2019.4.x and 2020.x
+
+      # Cleanup
+      - name: "Freeing up disk space for build"
+        run: |
+          echo "############################################"
+          echo "#    Freeing up disk space on CI system    #"
+          echo "############################################"
+          echo -n "Disk space before:"
+          df -h / --output=avail | tail -1
+          # https://github.com/apache/flink/blob/master/tools/azure-pipelines/free_disk_space.sh
+          rm -rf /usr/share/dotnet/
+          # https://github.com/actions/virtual-environments/issues/709#issuecomment-612569242
+          rm -rf "/usr/local/share/boost"
+          rm -rf "$AGENT_TOOLSDIRECTORY"
+          echo -n "Disk space after:"
+          df -h / --output=avail | tail -1
+
+      # Gets project name
+      - name: Get project name
+        run: echo "PROJECT_NAME=$(jq -r '.repository.name' < $GITHUB_EVENT_PATH)" >> $GITHUB_ENV
+
+      # Builds the project
+      - name: Build project
+        uses: game-ci/unity-builder@v2.0-alpha-6
+        with:
+          unityVersion: ${{ secrets.UNITY_VERSION }}
+          buildsPath: Builds
+          buildName: ${{env.PROJECT_NAME}}
+          targetPlatform: Android
+          versioning: Semantic
+          allowDirtyBuild: false
+
+      # Stores Unity logs
+      - name: Store logs
+        uses: actions/upload-artifact@v1
+        with:
+          name: Logs
+          path: Logs
+
+      # Stores all builds
+      - name: Store builds
+        uses: actions/upload-artifact@v2
+        with:
+          name: Builds
+          path: Builds
