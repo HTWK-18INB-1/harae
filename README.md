@@ -23,9 +23,26 @@ This is an simple virtual reality exorcism game.
  ```
 
 ## Assets
- * [Unity Assetstore](https://assetstore.unity.com/):
-   * [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) (10.02.2021)
-   * [Free Night Sky](https://assetstore.unity.com/packages/2d/textures-materials/sky/free-night-sky-79066) (06.02.2021)
+ * [Assetstore](https://assetstore.unity.com/):
+	* [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) (07.02.2021)
+	* [Low Poly Tree Pack](https://assetstore.unity.com/packages/3d/vegetation/trees/low-poly-tree-pack-57866) (07.02.2021)
+	* [18 High Resolution Wall Textures](https://assetstore.unity.com/packages/2d/textures-materials/brick/18-high-resolution-wall-textures-12567) (07.02.2021)
+	* [Terrain Textures Pack Free](https://assetstore.unity.com/packages/2d/textures-materials/terrain-textures-pack-free-139542) (07.02.2021)
+	* [Outdoor Ground Textures](https://assetstore.unity.com/packages/2d/textures-materials/floors/outdoor-ground-textures-12555) (07.02.2021)
+	* [Particle Ribbon](https://assetstore.unity.com/packages/vfx/particles/spells/particle-ribbon-42866)(07.02.2021)
+	* [Unity Particle Pack](https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325)(07.02.2021)
+	* [FREE Witchcraft and Wizardry Asset Pack](https://assetstore.unity.com/packages/3d/props/free-witchcraft-and-wizardry-asset-pack-141428)(01.03.2021)
+	* [Essential Horror Music Collection (v1) [FREE]](https://assetstore.unity.com/packages/audio/ambient/fantasy/essential-horror-music-collection-v1-free-187099)(01.03.2021)
+	* [Wind01](https://www.freesoundeffects.com/free-track/wind01-428702/)(12.03.2021)
+    * [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) (10.02.2021)
+    * [Free Night Sky](https://assetstore.unity.com/packages/2d/textures-materials/sky/free-night-sky-79066) (06.02.2021)
+ * [Charakter's and Animation](https://www.mixamo.com/):
+	* [Warrok W Kurniawan]
+	* [Yaku J Ignite]
+	* [Scary Zombie Pack]
+	* [Creature NPC Pack]
+ * [Music]
+ 	*[Boss Baatle Music](https://opengameart.org/content/boss-battle-music)
 
 ## Unity Packages
  * [XR Plugin Management](https://docs.unity3d.com/Packages/com.unity.xr.management@3.2/manual/index.html) (10.02.2021)
