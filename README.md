@@ -1,10 +1,13 @@
 # Harae
 [![Build status](https://github.com/HTWK-18INB-1/harae/actions/workflows/unity_ci.yml/badge.svg)](https://github.com/HTWK-18INB-1/harae/actions/workflows/unity_ci.yml)
 [![Chat](https://discordapp.com/api/guilds/774798139982348309/widget.png?style=shield)](https://discord.gg/h4wJmKYkMZ)
-[![Project refactoring](https://img.shields.io/badge/Project-Refactoring-blue.svg)](https://github.com/HTWK-18INB-1/harae/issues)
+[![Project not maintained](https://img.shields.io/badge/Project-Not_maintained-red.svg)](https://github.com/HTWK-18INB-1/harae/issues)
 
 ## About
 This is an simple virtual reality exorcism game.
+
+*Not maintained anymore, due to reached deadline.*
+
 ![Screenshot](screenshot.png)
 
 ## Requirements
@@ -23,6 +26,9 @@ This is an simple virtual reality exorcism game.
  git config mergetool.unityyamlmerge.keepBackup false
  git config mergetool.unityyamlmerge.cmd '"/path/to/UnityYAMLMerge" merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"'
  ```
+
+## Hardware
+Tested on the Oculus Quest.
 
 ## Assets
  * [Unity Assetstore](https://assetstore.unity.com):
